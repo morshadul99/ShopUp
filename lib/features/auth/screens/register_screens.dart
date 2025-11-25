@@ -31,6 +31,7 @@ class _RegisterScreensState extends State<RegisterScreens> {
     return Scaffold(
 
       resizeToAvoidBottomInset: false,
+      backgroundColor: Appcolors.white_color,
 
 
       body: GetBuilder<AuthController>(builder: (authController){
@@ -135,7 +136,7 @@ class _RegisterScreensState extends State<RegisterScreens> {
 
         controller: authController.passwordController,
         fillColor: Appcolors.white_color,
-        prefixIcon: Icons.password_outlined,
+        prefixIcon: Icons.lock_clock_outlined,
         sufixIcon: authController.isPassword == true? Icons.visibility:Icons.visibility_off,
 
         obSecure: authController.isPassword == true ? false:true,

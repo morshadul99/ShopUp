@@ -32,49 +32,33 @@ class _LoginScreenState extends State<LoginScreen> {
      return Scaffold(
        resizeToAvoidBottomInset: false,
 
+       backgroundColor: Appcolors.white_color,
+
+
        body: Padding(
          padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
          child: Column(
-           mainAxisAlignment: MainAxisAlignment.start,
+           mainAxisAlignment: MainAxisAlignment.center,
            crossAxisAlignment: CrossAxisAlignment.start,
            children: [
          
          
             // Image(image: AssetImage("${Images.red_carrote}")),
 
+
+
+
+         
+                Align(
+                    alignment: Alignment.center,
+                    child: Image(image: AssetImage("${Images.login}",),height: Get.height*0.3,)),
+
+
+
              SizedBox(height:Dimensions.paddingSizeExtraOverLarge,),
 
-             Container(
-         
-         
-               height: Get.height*0.3,
-               decoration: BoxDecoration(
-         
-                 image: DecorationImage(image: AssetImage("${Images.big_carrote}",),),
-         
-               ),
-             ),
-         
          
 
-         
-             Text(
-               "Loging",
-               style: robotoLarge.copyWith(
-                 color: Appcolors.black_text_color,
-                 fontSize: 26,
-                 fontWeight: FontWeight.w600,
-               ),
-             ),
-             Text(
-               "Enter your email and password to ",
-               style: robotoRegular.copyWith(
-                 color: Appcolors.grey_text_color,
-                 fontSize: 16,
-                 fontWeight: FontWeight.w400,
-               ),
-             ),
-             SizedBox(height: 20),
          
              Text(
                "Enter your email :",

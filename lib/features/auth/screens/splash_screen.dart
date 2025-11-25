@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_up/features/home/controller/home_controller.dart';
 import 'package:shop_up/routes/routes_names.dart';
+import 'package:shop_up/utils/app_constants.dart';
 import 'package:shop_up/utils/colors.dart';
 import 'package:shop_up/utils/dimentions.dart';
 import 'package:shop_up/utils/fonts_style.dart';
 import 'package:shop_up/utils/images.dart';
+
+import '../../home/screens/bottom_navigationBar.dart';
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,27 +19,44 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
+
 class _SplashScreenState extends State<SplashScreen> {
+
+  final HomeController  homeController = Get.put(HomeController());
+
 
   @override
   void initState() {
 
-    SplashPageDelayed();
+    setRoute();
 
     // TODO: implement initState
     super.initState();
   }
 
-  void SplashPageDelayed(){
 
-    Future.delayed(Duration(seconds: 4),(){
+  setRoute()async{
 
-      Get.toNamed(RoutesName.login);
+    SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+    String? token = sharedPreferences.getString("${AppConstants.token}");
+    print("User token issssssssssssssssss${token}");
+    if(token==null){
 
-    });
+      await homeController.loadAllData();
+      Get.off(LoginScreen());
+
+
+    }else{
+
+
+     await homeController.loadAllData();
+
+        Get.off(BottomNavigationbar());
+
+
+    }
 
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -51,39 +74,22 @@ class _SplashScreenState extends State<SplashScreen> {
           color: Appcolors.primary_color,
           
         ),
-        child: Column(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
 
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              Image(image: AssetImage("${Images.splash_logo}"),height: Get.height*0.3,),
 
 
-                
-                Image(image: AssetImage("${Images.white_carrote}")),
-                SizedBox(width: Dimensions.paddingSizeSmall,),
-
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("EasyShop",style: robotoOverLarge.copyWith(color: Appcolors.white_color,fontSize: 40,fontWeight: FontWeight.w700),),
-
-                    Text("EasyLife For EasyShop",style: robotoOverLarge.copyWith(color: Appcolors.white_color,fontSize: Dimensions.fontSizeLarge,fontWeight: FontWeight.w700),),
 
 
-                  ],
-                )
+              CircularProgressIndicator(),
 
-              ],
-            )
-            
-            
-          ],
-        ),
+
+            ],
+          ),
+        )
       )
 
 

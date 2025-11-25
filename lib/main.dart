@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shop_up/routes/routes.dart';
 import 'package:shop_up/routes/routes_names.dart';
 
-void main() {
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations(
+    [
+
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown
+
+    ]
+  );
+
   runApp(const MyApp());
 }
 
@@ -21,8 +34,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
 
-      initialRoute: RoutesName.home,
+      initialRoute: RoutesName.splash,
       getPages: Routes.app_routes(),
+
+
 
 
     );

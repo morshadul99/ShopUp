@@ -39,7 +39,7 @@ class AllProductsItems extends StatelessWidget {
             children: [
               Image.network(
                 "${AppConstants.image_url_part}${data.mainImage}",
-                height: 100,
+                height: 100,width: double.infinity,
                 fit: BoxFit.cover,
               ),
               SizedBox(height: 5),

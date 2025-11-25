@@ -27,6 +27,7 @@ Widget custom_text_field({
 
     decoration: InputDecoration(
     hintText: hintext,
+    hintStyle: TextStyle(color: Appcolors.grey_text_color),
 
     filled: true,
     fillColor: fillColor,

@@ -62,7 +62,7 @@ class AuthController extends GetxController{
       SharedPreferences sharedPreferences =  await SharedPreferences.getInstance();
 
       await sharedPreferences.setString("${AppConstants.token}", data["auth_token"]);
-      Get.offAllNamed(RoutesName.home);
+      Get.offAllNamed(RoutesName.bottomNavigation);
 
     }else{
       Get.snackbar(
@@ -146,7 +146,7 @@ class AuthController extends GetxController{
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.remove("${AppConstants.token}");
-    Get.offAll(LoginScreen());
+    Get.to(LoginScreen());
     update();
   }// getLogout end now
 

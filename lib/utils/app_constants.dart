@@ -26,6 +26,7 @@ class AppConstants{
 
 
   static const String all_productList = "/get-all-products";
+  static const String all_product_details ="/product/";
 
 
 
